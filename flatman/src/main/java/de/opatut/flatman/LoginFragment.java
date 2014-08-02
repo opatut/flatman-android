@@ -3,11 +3,15 @@ package de.opatut.flatman;
 import java.util.HashMap;
 import java.util.Map;
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -90,17 +94,22 @@ public class LoginFragment extends WelcomeWizardFragment {
 		private String mUsername;
 		private boolean mHasGroup;
 
-		protected Boolean doInBackground(String... params) {
+		protected Boolean doInBackground(final String... params) {
 			mUsername = params[0];
 
 			Map<String, String> args = new HashMap<String, String>();
 			args.put("username", params[0]);
 			args.put("password", params[1]);
-			LoginResult result = DataStorage.getInstance().load("/login", args, LoginResult.class, this);
+			final LoginResult result = DataStorage.getInstance().load("/login", args, LoginResult.class, this);
 
 			if (result.success) {
 				DataStorage.getInstance().setAuthToken(result.token.token);
-			} else {
+
+                // save account
+                AccountManager accountManager = AccountManager.get(getActivity());
+                final Account account = new Account(params[0], AccountAuthenticatorService.ACCOUNT_TYPE);
+                accountManager.addAccountExplicitly(account, result.token.token, null);
+            } else {
 				return false;
 			}
 			mHasGroup = (result != null && result.user != null && result.user.group_id > 0);

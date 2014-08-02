@@ -44,8 +44,6 @@ public class MainActivity extends Activity
 		mMainFragments.add(new ShoppingFragment());
 		mMainFragments.add(new MoneyFragment());
 		mMainFragments.add(new TasksFragment());
-
-		DataStorage.getInstance().registerDataUpdateErrorListener(this);
 	}
 
 	@Override
@@ -61,9 +59,11 @@ public class MainActivity extends Activity
 		mNavigationDrawerFragment.setUp(
 				R.id.navigation_drawer,
 				(DrawerLayout) findViewById(R.id.drawer_layout));
-		
-		DataStorage.getInstance().reload();
-		showMessage(MessageFragment.TYPE_PROGRESS, "Loading", null, 0);
+
+        DataStorage.getInstance().registerDataUpdateErrorListener(this);
+        DataStorage.getInstance().init(this);
+        DataStorage.getInstance().reload();
+        showMessage(MessageFragment.TYPE_PROGRESS, "Loading", null, 0);
 	}
 
 	@Override

@@ -12,7 +12,8 @@ public class Group {
 	public List<ShoppingItem> shopping_items = new ArrayList<ShoppingItem>();
 	public List<ShoppingCategory> shopping_categories = new ArrayList<ShoppingCategory>();
 	public List<Task> tasks = new ArrayList<Task>();
-	
+    public List<Transaction> transactions = new ArrayList<Transaction>();
+
 	public ShoppingCategory getShoppingCategory(int id) {
 		for(ShoppingCategory category : shopping_categories) {
 			if(category.id == id) {
@@ -21,4 +22,14 @@ public class Group {
 		}
 		return null;
 	}
+
+    public User getUserById(int userId) {
+        for(User user : members) {
+            if(user.id == userId) {
+                return user;
+            }
+        }
+
+        return null;
+    }
 }

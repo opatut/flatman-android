@@ -14,4 +14,6 @@
     
     <color name="button_flat_background_normal">#0000</color>
     <color name="button_flat_background_pressed">#1000</color>
+    <color name="money_positive">#0C0</color>
+    <color name="money_negative">#F00</color>
 </resources>

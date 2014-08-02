@@ -15,6 +15,9 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
+import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 
@@ -23,6 +26,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import de.opatut.flatman.AccountAuthenticatorService;
 import de.opatut.flatman.data.exceptions.AuthorizationRequiredException;
 import de.opatut.flatman.data.exceptions.FormErrorsException;
 import de.opatut.flatman.data.exceptions.InvalidCredentialsException;
@@ -45,8 +49,27 @@ public class DataStorage {
 	private Exception mUpdateError;
 
 	private DataStorage() {
-		reload();
 	}
+
+    public void init(Context context) {
+        Account account = getSavedAccount(context);
+        if(account != null) {
+            mAuthToken = AccountManager.get(context).getPassword(account);
+        }
+    }
+
+    public Account getSavedAccount(Context context) {
+        AccountManager accountManager = AccountManager.get(context);
+        Account[] accounts = accountManager.getAccountsByType(AccountAuthenticatorService.ACCOUNT_TYPE);
+        if (accounts.length == 1) {
+            return accounts[0];
+        } else if (accounts.length > 1) {
+            for (Account a : accounts) {
+                accountManager.removeAccount(a, null, null);
+            }
+        }
+        return null;
+    }
 
 	public static DataStorage getInstance() {
 		if (sInstance == null) {
