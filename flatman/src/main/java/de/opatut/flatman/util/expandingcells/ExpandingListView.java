@@ -193,7 +193,7 @@ public class ExpandingListView extends ListView {
         }
 
         /* Update the layout so the extra content becomes visible.*/
-        final View expandingLayout = view.findViewById(R.id.extra);
+        final View expandingLayout = view.findViewById(viewObject.getIdOfExpandableSection());
         expandingLayout.setVisibility(View.VISIBLE);
 
         /* Add an onPreDraw Listener to the listview. onPreDraw will get invoked after onLayout
@@ -296,7 +296,7 @@ public class ExpandingListView extends ListView {
                 animations.add(getAnimation(view, -yTranslateTop, yTranslateBottom));
 
                 /* Adds an animation for fading in the extra content. */
-                animations.add(ObjectAnimator.ofFloat(view.findViewById(R.id.extra),
+                animations.add(ObjectAnimator.ofFloat(view.findViewById(viewObject.getIdOfExpandableSection()),
                         View.ALPHA, 0, 1));
 
                 /* Disabled the ListView for the duration of the animation.*/
@@ -472,7 +472,7 @@ public class ExpandingListView extends ListView {
                     }
                 }
 
-                final View expandingLayout = view.findViewById (R.id.extra);
+                final View expandingLayout = view.findViewById(viewObject.getIdOfExpandableSection());
 
                 /* Animates all the cells present on the screen after the collapse. */
                 ArrayList <Animator> animations = new ArrayList<Animator>();

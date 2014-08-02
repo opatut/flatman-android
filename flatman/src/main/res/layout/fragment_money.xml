@@ -70,7 +70,7 @@
             android:text="@string/todo" />
     </LinearLayout>
 
-    <ListView
+    <de.opatut.flatman.util.expandingcells.ExpandingListView
         android:id="@+id/transactions"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"

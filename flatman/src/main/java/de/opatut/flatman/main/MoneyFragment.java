@@ -19,6 +19,8 @@ import de.opatut.flatman.data.Transaction;
 import de.opatut.flatman.util.DownloadImageTask;
 import de.opatut.flatman.util.Formatter;
 import de.opatut.flatman.util.SimpleListAdapter;
+import de.opatut.flatman.util.expandingcells.ExpandingListView;
+import de.opatut.flatman.util.expandingcells.SimpleExpandableListAdapter;
 
 public class MoneyFragment extends Fragment {
 
@@ -41,8 +43,8 @@ public class MoneyFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_money, container, false);
 
-        mTransactionsList = (ListView) root.findViewById(R.id.transactions);
-        mTransactionsList.setAdapter(new SimpleListAdapter<Transaction>(getActivity(), R.layout.listitem_transaction, DataStorage.getInstance().group.transactions) {
+        mTransactionsList = (ExpandingListView) root.findViewById(R.id.transactions);
+        mTransactionsList.setAdapter(new SimpleExpandableListAdapter<Transaction>(getActivity(), R.layout.listitem_transaction, R.id.extra, 40, DataStorage.getInstance().group.transactions) {
             @Override
             public void fillRow(Transaction transaction, View view) {
                 ((TextView) view.findViewById(R.id.reason)).setText(transaction.reason);
