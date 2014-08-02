@@ -18,8 +18,10 @@ import org.apache.http.message.BasicNameValuePair;
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Looper;
+import android.preference.PreferenceManager;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -47,19 +49,22 @@ public class DataStorage {
 	private String mAuthToken = null;
 
 	private Exception mUpdateError;
+    private Context mContext;
 
-	private DataStorage() {
+    private DataStorage() {
 	}
 
     public void init(Context context) {
-        Account account = getSavedAccount(context);
+        this.mContext = context;
+
+        Account account = getSavedAccount();
         if(account != null) {
             mAuthToken = AccountManager.get(context).getPassword(account);
         }
     }
 
-    public Account getSavedAccount(Context context) {
-        AccountManager accountManager = AccountManager.get(context);
+    public Account getSavedAccount() {
+        AccountManager accountManager = AccountManager.get(mContext);
         Account[] accounts = accountManager.getAccountsByType(AccountAuthenticatorService.ACCOUNT_TYPE);
         if (accounts.length == 1) {
             return accounts[0];
@@ -111,7 +116,10 @@ public class DataStorage {
 			HttpClient httpclient = new DefaultHttpClient();
 			HttpResponse response;
 
-			HttpPost post = new HttpPost(API_URL + url);
+            SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mContext.getApplicationContext());
+            String servername = settings.getString("server", API_URL);
+
+			HttpPost post = new HttpPost(servername + url);
 
 			List<NameValuePair> nvpList = new ArrayList<NameValuePair>();
 			if (postData != null) {
