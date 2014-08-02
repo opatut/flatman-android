@@ -1,0 +1,111 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context="de.opatut.flatman.main.ShoppingFragment" >
+
+    <de.opatut.flatman.util.ListenableScrollView
+        android:id="@+id/scroll"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <AbsoluteLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+            <RelativeLayout
+                android:id="@+id/filter"
+                android:layout_width="fill_parent"
+                android:layout_height="200dp"
+                android:layout_x="0dp"
+                android:layout_y="0dp"
+                android:background="@color/filter_background"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingTop="16dp" >
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:layout_width="0dip"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Filter by category" />
+
+                        <Spinner
+                            android:id="@+id/filter_category"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:prompt="@string/select_category"
+                            tools:listitem="@android:layout/simple_spinner_item" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:layout_width="0dip"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Hide purchased items" />
+
+                        <Switch
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right" >
+
+                        <Button
+                            android:id="@+id/button_back"
+                            style="@style/ButtonFlat"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Clear" />
+
+                        <Button
+                            android:id="@+id/button_login"
+                            style="@style/ButtonFlatPrimary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Apply" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="16dp"
+                    android:layout_alignParentBottom="true"
+                    android:alpha="0.3"
+                    android:background="@drawable/background_flat_title" />
+            </RelativeLayout>
+
+            <de.opatut.flatman.util.StaticListView
+                android:id="@+id/list_shopping_items"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFF"
+                android:layout_x="0dp"
+                android:layout_y="200dp" >
+            </de.opatut.flatman.util.StaticListView>
+        </AbsoluteLayout>
+    </de.opatut.flatman.util.ListenableScrollView>
+
+</FrameLayout>

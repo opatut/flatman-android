@@ -1,0 +1,56 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_for_cards"
+    android:orientation="vertical"
+    tools:context="de.opatut.flatman.MainActivity$PlaceholderFragment" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="fill_parent"
+            android:layout_height="150dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/kitchen" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/image"
+            android:background="@drawable/background_flat_title"
+            android:gravity="center"
+            android:paddingBottom="8dp"
+            android:paddingTop="16dp"
+            android:textSize="24sp"
+            android:text="@string/todo"
+            android:textColor="#FFF" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/ad"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:adjustViewBounds="true"
+        android:clickable="true"
+        android:scaleType="centerCrop"
+        android:visibility="gone"
+        android:src="@drawable/premium" />
+
+    <LinearLayout
+        android:id="@+id/home_cards"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp" >
+    </LinearLayout>
+
+</LinearLayout>

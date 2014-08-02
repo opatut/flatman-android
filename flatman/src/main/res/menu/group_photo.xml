@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/action_show_in_gallery"
+        android:title="@string/action_show_in_gallery"/>
+    <item
+        android:id="@+id/action_take_new_photo"
+        android:title="@string/action_take_new_photo"/>
+
+    <item
+        android:id="@+id/action_remove_group_photo"
+        android:title="@string/action_remove_group_photo"/>
+
+</menu>

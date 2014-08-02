@@ -1,0 +1,37 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context="de.opatut.flatman.ChooseLoginRegisterFragment" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:text="@string/choose_login_register_question"
+        android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/choose_login_button"
+        style="@style/ButtonFlat"
+        android:layout_width="match_parent"
+        android:gravity="center_vertical|left"
+        android:text="@string/choose_login_button" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="4dp"
+        android:background="#CCC" />
+
+    <Button
+        android:id="@+id/choose_register_button"
+        style="@style/ButtonFlat"
+        android:layout_width="match_parent"
+        android:gravity="center_vertical|left"
+        android:text="@string/choose_register_button" />
+
+</LinearLayout>

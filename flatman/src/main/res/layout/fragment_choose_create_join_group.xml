@@ -1,0 +1,38 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context="de.opatut.flatman.ChooseCreateJoinGroupFragment" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/choose_create_join_question"
+        android:layout_marginBottom="32dp"
+        android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/choose_join_button"
+        style="@style/ButtonFlat"
+        android:layout_width="match_parent"
+        android:gravity="center_vertical|left"
+        android:text="@string/choose_join_button" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="4dp"
+        android:background="#CCC" />
+
+    <Button
+        android:id="@+id/choose_create_button"
+        style="@style/ButtonFlat"
+        android:layout_width="match_parent"
+        android:gravity="center_vertical|left"
+        android:text="@string/choose_create_button" />
+
+</LinearLayout>
