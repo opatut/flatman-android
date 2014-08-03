@@ -44,7 +44,8 @@ public class MoneyFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_money, container, false);
 
         mTransactionsList = (ExpandingListView) root.findViewById(R.id.transactions);
-        mTransactionsList.setAdapter(new SimpleExpandableListAdapter<Transaction>(getActivity(), R.layout.listitem_transaction, R.id.extra, 40, DataStorage.getInstance().group.transactions) {
+        int heightInDpWidhoutExtra = 8 + 18 + 14 + 8 + 12;
+        mTransactionsList.setAdapter(new SimpleExpandableListAdapter<Transaction>(getActivity(), R.layout.listitem_transaction, R.id.extra, heightInDpWidhoutExtra, DataStorage.getInstance().group.transactions) {
             @Override
             public void fillRow(Transaction transaction, View view) {
                 ((TextView) view.findViewById(R.id.reason)).setText(transaction.reason);
@@ -75,8 +76,6 @@ public class MoneyFragment extends Fragment {
 
                 view.findViewById(R.id.comment_box).setVisibility(transaction.comment.equals("") ? View.GONE : View.VISIBLE);
                 ((TextView) view.findViewById(R.id.comment)).setText(transaction.comment);
-
-                view.findViewById(R.id.extra).setVisibility(View.GONE);
 
 
                 if(transaction.from_type.equals("user")) {

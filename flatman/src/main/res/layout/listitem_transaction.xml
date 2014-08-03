@@ -5,6 +5,7 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/item_linear_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
@@ -49,7 +50,7 @@
             android:textSize="22sp" />
     </LinearLayout>
 
-    <LinearLayout
+    <de.opatut.flatman.util.expandingcells.ExpandingLayout
         android:id="@+id/extra"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -154,5 +155,5 @@
                 android:layout_height="wrap_content"
                 android:text="Comment" />
         </LinearLayout>
-    </LinearLayout>
+    </de.opatut.flatman.util.expandingcells.ExpandingLayout>
 </LinearLayout>

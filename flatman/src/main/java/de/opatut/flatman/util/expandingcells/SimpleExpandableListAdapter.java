@@ -1,5 +1,6 @@
 package de.opatut.flatman.util.expandingcells;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
@@ -7,10 +8,14 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import de.opatut.flatman.R;
 
 public abstract class SimpleExpandableListAdapter<T> extends BaseAdapter {
 
@@ -44,6 +49,22 @@ public abstract class SimpleExpandableListAdapter<T> extends BaseAdapter {
         ExpandableListItem item = (ExpandableListItem) getItem(position);
 
         fillRow((T) item.getData(), convertView);
+
+        // prepare outer layout
+        LinearLayout linearLayout = (LinearLayout) convertView.findViewById(R.id.item_linear_layout);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(AbsListView.LayoutParams.MATCH_PARENT, item.getCollapsedHeight());
+        linearLayout.setLayoutParams(layoutParams);
+
+        // prepare expandable list layout
+        ExpandingLayout expandingLayout = (ExpandingLayout) convertView.findViewById(mExpandableElementResourceId);
+        expandingLayout.setExpandedHeight(item.getExpandedHeight());
+        expandingLayout.setSizeChangedListener(item);
+
+        if ( !item.isExpanded() ) {
+            expandingLayout.setVisibility(View.GONE);
+        } else {
+            expandingLayout.setVisibility(View.VISIBLE);
+        }
 
         return convertView;
     }
