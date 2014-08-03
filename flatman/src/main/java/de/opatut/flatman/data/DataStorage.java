@@ -36,7 +36,7 @@ import de.opatut.flatman.data.exceptions.LoadDataException;
 import de.opatut.flatman.data.exceptions.NoGroupException;
 
 public class DataStorage {
-	public static final String API_URL = "http://opatut.de:5000/api";
+	private static final String API_URL = "http://opatut.de:5000/api";
 
 	private static DataStorage sInstance = null;
 
@@ -62,6 +62,12 @@ public class DataStorage {
             mAuthToken = AccountManager.get(context).getPassword(account);
         }
     }
+
+    public String getApiUrl() {
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mContext.getApplicationContext());
+        return settings.getString("server", API_URL);
+    }
+
 
     public Account getSavedAccount() {
         AccountManager accountManager = AccountManager.get(mContext);
@@ -116,10 +122,7 @@ public class DataStorage {
 			HttpClient httpclient = new DefaultHttpClient();
 			HttpResponse response;
 
-            SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mContext.getApplicationContext());
-            String servername = settings.getString("server", API_URL);
-
-			HttpPost post = new HttpPost(servername + url);
+            HttpPost post = new HttpPost(getApiUrl() + url);
 
 			List<NameValuePair> nvpList = new ArrayList<NameValuePair>();
 			if (postData != null) {

@@ -8,7 +8,7 @@ public class User {
 	public int group_id;
 	
 	public String getAvatarUrl(int size) {
-		return DataStorage.API_URL + "/user/" + id + "/avatar/" + size;
+		return DataStorage.getInstance().getApiUrl() + "/user/" + id + "/avatar/" + size;
 	}
 
 	public String getAvatarUrl() {
@@ -16,6 +16,6 @@ public class User {
 	}
 
 	public static String getAvatarUrl(int id, int size) {
-		return DataStorage.API_URL + "/user/" + id + "/avatar/" + size;
+		return DataStorage.getInstance().getApiUrl() + "/user/" + id + "/avatar/" + size;
 	}
 }
