@@ -31,13 +31,13 @@ public class ExpandableListItem implements OnSizeChangedListener {
     private int mIdOfExpandableSection;
     private Object mData;
 
-    public ExpandableListItem(int idOfExpandableSection, int collapsedHeight, Object wrappedData) {
+    public ExpandableListItem(int idOfExpandableSection, Object wrappedData) {
         mIdOfExpandableSection = idOfExpandableSection;
-        mCollapsedHeight = collapsedHeight;
         mData = wrappedData;
 
         mIsExpanded = false;
         mExpandedHeight = -1;
+        mCollapsedHeight = -1;
     }
 
     public boolean isExpanded() {

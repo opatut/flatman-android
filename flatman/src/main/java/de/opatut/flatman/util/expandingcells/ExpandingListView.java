@@ -34,8 +34,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import de.opatut.flatman.R;
-
 /**
  * A custom listview which supports the preview of extra content corresponding to each cell
  * by clicking on the cell to hide and show the extra content.

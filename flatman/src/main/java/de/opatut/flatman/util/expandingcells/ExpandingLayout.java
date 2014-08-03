@@ -62,7 +62,9 @@ public class ExpandingLayout extends RelativeLayout {
     protected void onSizeChanged (int w, int h, int oldw, int oldh) {
         mExpandedHeight = h;
         //Notifies the list data object corresponding to this layout that its size has changed.
-        mSizeChangedListener.onSizeChanged(h);
+        if ( mSizeChangedListener != null ) {
+            mSizeChangedListener.onSizeChanged(h);
+        }
     }
 
     public int getExpandedHeight() {
