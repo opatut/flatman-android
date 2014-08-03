@@ -1,5 +1,7 @@
 package de.opatut.flatman.util;
 
+import android.animation.AnimatorSet;
+import android.animation.LayoutTransition;
 import android.content.Context;
 import android.database.DataSetObserver;
 import android.util.AttributeSet;
@@ -10,62 +12,71 @@ import android.widget.LinearLayout;
 
 public class StaticListView extends LinearLayout {
 
-	private BaseAdapter mAdapter;
+    private BaseAdapter mAdapter;
 
-	public StaticListView(Context context) {
-		super(context);
-		init();
-	}
+    public StaticListView(Context context) {
+        super(context);
+        init();
+    }
 
-	public StaticListView(Context context, AttributeSet attrs) {
-		super(context, attrs);
-		init();
-	}
+    public StaticListView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        init();
+    }
 
-	public StaticListView(Context context, AttributeSet attrs, int defStyle) {
-		super(context, attrs, defStyle);
-		init();
-	}
+    public StaticListView(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
+        init();
+    }
 
-	private void init() {
-		setOrientation(VERTICAL);
-	}
+    private void init() {
+        setOrientation(VERTICAL);
 
-	public void setAdapter(BaseAdapter adapter) {
-		mAdapter = adapter;
-		adapter.registerDataSetObserver(new DataSetObserver() {
-			@Override
-			public void onChanged() {
-				update();
-			}
+        LayoutTransition transition = new LayoutTransition();
+        transition.setDuration(200);
+        transition.enableTransitionType(LayoutTransition.APPEARING);
+        transition.enableTransitionType(LayoutTransition.CHANGING);
+        transition.enableTransitionType(LayoutTransition.CHANGE_APPEARING);
+        transition.enableTransitionType(LayoutTransition.CHANGE_DISAPPEARING);
+        transition.enableTransitionType(LayoutTransition.DISAPPEARING);
+        setLayoutTransition(transition);
+    }
 
-			@Override
-			public void onInvalidated() {
-				update();
-			}
-		});
-		update();
-	}
+    public void setAdapter(BaseAdapter adapter) {
+        mAdapter = adapter;
+        adapter.registerDataSetObserver(new DataSetObserver() {
+            @Override
+            public void onChanged() {
+                update();
+            }
 
-	private void update() {
-		removeAllViews();
+            @Override
+            public void onInvalidated() {
+                update();
+            }
+        });
+        update();
+    }
 
-		if (mAdapter == null) {
-			System.out.println("No adapter");
-			return;
-		}
+    private void update() {
+        removeAllViews();
 
-		for (int i = 0; i < mAdapter.getCount(); ++i) {
-			View v = mAdapter.getView(i, null, this);
-			v.setTag(mAdapter.getItemId(i));
-			v.setClickable(true);
-			addView(v);
-		}
-	}
-	
-	@Override
-	public boolean onInterceptTouchEvent(MotionEvent ev) {
-		return false;
-	}
+        if(mAdapter == null) {
+            System.out.println("No adapter");
+            return;
+        }
+
+        for(int i = 0; i < mAdapter.getCount(); ++i) {
+            View v = mAdapter.getView(i, null, this);
+            v.setTag(mAdapter.getItemId(i));
+            v.setClickable(true);
+            addView(v);
+        }
+    }
+
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        return false;
+    }
 
 }

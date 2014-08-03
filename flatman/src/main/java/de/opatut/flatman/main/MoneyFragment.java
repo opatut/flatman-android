@@ -1,5 +1,6 @@
 package de.opatut.flatman.main;
 
+import android.app.ActionBar;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,7 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ListView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,10 +20,11 @@ import de.opatut.flatman.data.Transaction;
 import de.opatut.flatman.util.DownloadImageTask;
 import de.opatut.flatman.util.Formatter;
 import de.opatut.flatman.util.SimpleListAdapter;
+import de.opatut.flatman.util.StaticListView;
 
 public class MoneyFragment extends Fragment {
 
-    private ListView mTransactionsList;
+    private StaticListView mTransactionsList;
 
     public MoneyFragment() {
         // Required empty public constructor
@@ -41,7 +43,7 @@ public class MoneyFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_money, container, false);
 
-        mTransactionsList = (ListView) root.findViewById(R.id.transactions);
+        mTransactionsList = (StaticListView) root.findViewById(R.id.transactions);
         mTransactionsList.setAdapter(new SimpleListAdapter<Transaction>(getActivity(), R.layout.listitem_transaction, DataStorage.getInstance().group.transactions) {
             @Override
             public void fillRow(Transaction transaction, View view) {
@@ -86,6 +88,14 @@ public class MoneyFragment extends Fragment {
                 }
 
                 new DownloadImageTask((ImageView) view.findViewById(R.id.author_image)).execute(transaction.getAuthor().getAvatarUrl(64));
+
+                view.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        View extra = view.findViewById(R.id.extra);
+                        extra.setVisibility(extra.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
+                    }
+                });
             }
         });
 
