@@ -1,8 +1,7 @@
 package de.opatut.flatman.main;
 
-import info.evelio.drawable.RoundedAvatarDrawable;
-import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -12,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import de.opatut.flatman.R;
 import de.opatut.flatman.data.DataStorage;
 import de.opatut.flatman.data.Task;

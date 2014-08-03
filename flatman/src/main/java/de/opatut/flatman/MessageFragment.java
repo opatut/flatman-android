@@ -1,18 +1,19 @@
 package de.opatut.flatman;
 
-import de.opatut.flatman.data.DataStorage;
-import de.opatut.flatman.data.DataStorage.DataUpdateListener;
-import de.opatut.flatman.main.MainActivity;
-import de.opatut.flatman.util.awesome.TextAwesome;
-import android.os.Bundle;
 import android.app.Activity;
-import android.app.Fragment;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import de.opatut.flatman.data.DataStorage;
+import de.opatut.flatman.data.DataStorage.DataUpdateListener;
+import de.opatut.flatman.main.MainActivity;
+import de.opatut.flatman.util.awesome.TextAwesome;
 
 public class MessageFragment extends Fragment implements DataUpdateListener {
 	public static final int TYPE_PROGRESS = 1;

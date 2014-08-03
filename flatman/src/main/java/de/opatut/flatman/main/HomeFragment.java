@@ -1,10 +1,8 @@
 package de.opatut.flatman.main;
 
-import java.util.List;
-
 import android.app.Activity;
-import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,6 +12,9 @@ import android.widget.PopupMenu;
 import android.widget.PopupMenu.OnMenuItemClickListener;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.List;
+
 import de.opatut.flatman.R;
 import de.opatut.flatman.data.DataStorage;
 import de.opatut.flatman.data.Task;

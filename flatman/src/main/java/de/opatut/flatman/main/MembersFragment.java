@@ -1,8 +1,8 @@
 package de.opatut.flatman.main;
 
-import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import de.opatut.flatman.MemberDetailsActivity;
 import de.opatut.flatman.R;
 import de.opatut.flatman.data.DataStorage;
@@ -58,9 +59,10 @@ public class MembersFragment extends Fragment implements DataStorage.DataUpdateL
 				view.setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View v) {
-						Intent i = new Intent(getActivity(), MemberDetailsActivity.class);
-						i.putExtra(MemberDetailsActivity.EXTRA_MEMBER_INDEX, DataStorage.getInstance().group.members.indexOf(item));
-						startActivity(i);
+						Intent memberDetailsIntent = new Intent(getActivity(), MemberDetailsActivity.class);
+
+						memberDetailsIntent.putExtra(MemberDetailsActivity.EXTRA_MEMBER_INDEX, DataStorage.getInstance().group.members.indexOf(item));
+						startActivity(memberDetailsIntent);
 					}
 				});
 

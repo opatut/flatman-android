@@ -1,18 +1,19 @@
 package de.opatut.flatman.main;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.app.ActionBar;
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import de.opatut.flatman.MessageFragment;
 import de.opatut.flatman.R;
 import de.opatut.flatman.SettingsActivity;
@@ -21,7 +22,7 @@ import de.opatut.flatman.data.DataStorage;
 import de.opatut.flatman.data.exceptions.AuthorizationRequiredException;
 import de.opatut.flatman.data.exceptions.NoGroupException;
 
-public class MainActivity extends Activity
+public class MainActivity extends FragmentActivity
 		implements NavigationDrawerFragment.NavigationDrawerCallbacks, DataStorage.DataUpdateErrorListener {
 
 	private NavigationDrawerFragment mNavigationDrawerFragment;
@@ -69,8 +70,10 @@ public class MainActivity extends Activity
 	@Override
 	public void onNavigationDrawerItemSelected(int position) {
 		// update the main content by replacing fragments
-		FragmentManager fragmentManager = getFragmentManager();
-		fragmentManager.beginTransaction().replace(R.id.container, mMainFragments.get(position)).commit();
+		FragmentManager fragmentManager = getSupportFragmentManager();
+		fragmentManager.beginTransaction()
+                .replace(R.id.container, mMainFragments.get(position))
+                .commit();
 		onSectionAttached(position);
 	}
 
@@ -81,8 +84,10 @@ public class MainActivity extends Activity
 
 	public void showMessage(int type, String title, String message, int icon) {
 		mMessageFragment = MessageFragment.newInstance(type, title, message, icon);
-		FragmentManager fragmentManager = getFragmentManager();
-		fragmentManager.beginTransaction().replace(R.id.container, mMessageFragment).commit();
+		FragmentManager fragmentManager = getSupportFragmentManager();
+		fragmentManager.beginTransaction()
+                .replace(R.id.container, mMessageFragment)
+                .commit();
 	}
 
 	public void onSectionAttached(int number) {
